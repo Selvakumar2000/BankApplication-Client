@@ -1,0 +1,46 @@
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Payment Details Register</h1>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <app-payment-details-form></app-payment-details-form>
+    </div>
+
+    <div class="col-md-6">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Card Owner</th>
+                    <th>Card Number</th>
+                    <th>Exp. Date</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+
+<!--to print json format {{ object | json } and keyvalue pipe}
+list json output
+    { 
+        "PaymentDetailId" : 1,
+        "CardOwnerName"   : "Selvakumar",
+        "CardNumber"      : "1234567812345678", 
+        "ExpirationDate"  : "12/12",
+        "SecurityCode"    : "123" 
+    }
+-->
+
+            <tr *ngFor="let pd of service.list">
+                <td (click)="populateForm(pd)">{{pd.CardOwnerName}}</td>
+                <td (click)="populateForm(pd)">{{pd.CardNumber}}</td>
+                <td (click)="populateForm(pd)">{{pd.ExpirationDate}}</td>
+                <td>
+                    <i class="fas fa-edit fa-lg " style="color:green;"></i><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.PaymentDetailId)"></i>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+</div>
